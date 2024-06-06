@@ -20,7 +20,7 @@ namespace prueba.Controllers.Enrrollements
             try{
                 var user = _enrollmentRepository.UpdateEnrrollment(enrrollment, id);
                 if(user == null){
-                    return BadRequest("Ha ocurrido un error con los IDS comprobar y volver a probar");
+                    return BadRequest("Ha ocurrido un error con los IDS o el Status comprobar y volver a probar");
                 }
                 return Ok(user);
             }

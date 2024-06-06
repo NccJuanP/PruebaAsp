@@ -7,7 +7,7 @@ namespace prueba.Models
     {
         public int Id { get; set; }
         public string? Names { get; set; }
-        public DateOnly BirthDate { get; set; }
+        public DateOnly? BirthDate { get; set; }
         public string? Address { get; set; }
         public string? Email { get; set; }
 

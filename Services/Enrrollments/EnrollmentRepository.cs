@@ -27,7 +27,7 @@ namespace prueba.Services.Enrollments
         {
             return _context.Enrollments.Include(s => s.Student).Include(c => c.Course).ThenInclude(t => t.Teacher).ToList();
         }
-        
+
         //Cuerpo de la funcion para listar las matriculas por fecha especifica
         public List<Enrollment> GetEnrollmentsByDate(DateOnly date)
         {
@@ -43,7 +43,7 @@ namespace prueba.Services.Enrollments
         //Cuerpo de la funcion para actualizar una matricula   
         public Enrollment UpdateEnrrollment(Enrollment enrollment, int id)
         {
-           if (enrollment.Id != id)
+            if (enrollment.Id != id)
             {
                 return null;
             }
@@ -53,13 +53,25 @@ namespace prueba.Services.Enrollments
                 return null;
             }
 
+            switch (enrollment.Status)
+            {
+                case "PAGADA":
+                    break;
+                case "PENDIENTE DE PAGO":
+                    break;
+                case "CANCELADA":
+                    break;
+                default:
+                    return null;
+            }
+
             Enrollment oldEnrollments = _context.Enrollments.Find(id);
 
             //recorremos el objeto verificando que propiedades son nulas y cuales no
             foreach (PropertyInfo property in enrollment.GetType().GetProperties())
             {
                 if (property.GetValue(enrollment) != null)
-                {   
+                {
                     property.SetValue(oldEnrollments, property.GetValue(enrollment));
                 }
             }
