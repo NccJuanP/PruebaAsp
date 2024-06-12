@@ -14,6 +14,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddControllers();
 
+//Configuracion De Automapper
+builder.Services.AddAutoMapper(typeof(Program));
+
 //Configuracion para la conexion con la base de datos
 builder.Services.AddDbContext<pruebaContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.20-mysql")));

@@ -1,6 +1,7 @@
 using prueba.Services.Students;
 using prueba.Models;
 using Microsoft.AspNetCore.Mvc;
+using prueba.Dtos;
 
 namespace prueba.Controllers.Students
 {
@@ -18,7 +19,7 @@ namespace prueba.Controllers.Students
 
         [HttpPut]
         [Route("api/students/{id}")]
-        public IActionResult UpdateStudent(int id, Student student){
+        public IActionResult UpdateStudent(int id, StudentDto student){
             try{
                 var user = _studentRepository.UpdateStudent(student, id);
                 if(user == null){

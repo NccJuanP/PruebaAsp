@@ -6,12 +6,16 @@ namespace prueba.Models
     public class Student
     {
         public int Id { get; set; }
-        public string? Names { get; set; }
+        [Required]
+        public string Names { get; set; }
+        [Required]
         public DateOnly? BirthDate { get; set; }
-        public string? Address { get; set; }
-        public string? Email { get; set; }
+        [Required]
+        public string Address { get; set; }
+        [Required]
+        public string Email { get; set; }
 
         [JsonIgnore]
-        public List<Enrollment>? Enrrollment { get; set; }
+        public List<Enrollment> Enrrollment { get; set; }
     }
 }

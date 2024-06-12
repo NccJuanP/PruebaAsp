@@ -1,4 +1,5 @@
 using prueba.Models;
+using prueba.Dtos;
 
 namespace prueba.Services.Students
 {
@@ -14,7 +15,7 @@ namespace prueba.Services.Students
         Student CreateStudent(Student student);
 
         //Funcion para actualizar un student
-        Student UpdateStudent(Student student, int id);
+        Student UpdateStudent(StudentDto student, int id);
 
         //Funcion para listar todas las matriculas de un estudiante por id
         List<Enrollment> GetEnrollmentsByStudentId(int id);

@@ -2,15 +2,19 @@ using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using prueba.Data;
 using prueba.Models;
+using prueba.Dtos;
+using AutoMapper;
 
 namespace prueba.Services.Students
 {
     public class StudentRepository : IStudentRepository
     {
         private readonly pruebaContext _context;
-        public StudentRepository(pruebaContext context)
+        private readonly IMapper _mapper;
+        public StudentRepository(pruebaContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         //Cuerpo de la funcion que crea un estudiante
@@ -46,7 +50,7 @@ namespace prueba.Services.Students
         }
 
         //Cuerpo de la funcion para actualizar un estudiante por id y datos especificos
-        public Student UpdateStudent(Student student, int id)
+        public Student UpdateStudent(StudentDto student, int id)
         {
             if (student.Id != id)
             {
@@ -60,16 +64,18 @@ namespace prueba.Services.Students
 
             Student oldStudent = _context.Students.Find(id);
 
-            //recorremos el objeto verificando que propiedades son nulas y cuales no
+            _mapper.Map(student, oldStudent);
+
+            /* //recorremos el objeto verificando que propiedades son nulas y cuales no
             foreach (PropertyInfo property in student.GetType().GetProperties())
             {
                 if (property.GetValue(student) != null)
                 {   
                     property.SetValue(oldStudent, property.GetValue(student));
                 }
-            }
+            } */
 
-            _context.Students.Update(oldStudent);
+/*             _context.Students.Update(oldStudent); */
             _context.SaveChanges();
             return oldStudent;
         }
