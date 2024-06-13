@@ -1,6 +1,7 @@
 using prueba.Models;
 using prueba.Services.Teachers;
 using Microsoft.AspNetCore.Mvc;
+using prueba.Dtos;
 
 namespace prueba.Controllers.Teachers
 {
@@ -18,7 +19,7 @@ namespace prueba.Controllers.Teachers
         //Actualizar un profesor
         [HttpPut]
         [Route("api/teachers/{id}")]
-        public IActionResult UpdateTeacher(int id, Teacher teacher)
+        public IActionResult UpdateTeacher(int id, TeacherDto teacher)
         {
             try{
                 var user = _teacherRepository.UpdateTeacher(teacher, id);
