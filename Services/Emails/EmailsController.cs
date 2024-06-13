@@ -1,7 +1,7 @@
 using System.Text;
 using System.Text.Json;
 using prueba.Models;
-namespace prueba.Controllers.Emails
+namespace prueba.Services.Emails
 {
     public class EmailsController
     {

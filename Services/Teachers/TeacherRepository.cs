@@ -2,15 +2,19 @@ using prueba.Models;
 using prueba.Data;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
+using prueba.Dtos;
 
 namespace prueba.Services.Teachers
 {
     public class TeacherRepository : ITeacherRepository
     {   
         private readonly pruebaContext _context;
-        public TeacherRepository(pruebaContext context)
+        private readonly IMapper _mapper;
+        public TeacherRepository(pruebaContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         //Cuerpo de la funcion para crear un profesor
@@ -40,7 +44,7 @@ namespace prueba.Services.Teachers
         }
 
         //Cuerpo de la funcion para actualizar un profesor
-        public Teacher UpdateTeacher(Teacher teacher, int id)
+        public Teacher UpdateTeacher(TeacherDto teacher, int id)
         {
             if (teacher.Id != id)
             {
@@ -51,19 +55,20 @@ namespace prueba.Services.Teachers
             {
                 return null;
             }
-
+            
             Teacher oldTeacher = _context.Teachers.Find(id);
 
+            _mapper.Map(teacher, oldTeacher);
+
             //recorremos el objeto verificando que propiedades son nulas y cuales no
-            foreach (PropertyInfo property in teacher.GetType().GetProperties())
+            /* foreach (PropertyInfo property in teacher.GetType().GetProperties())
             {
                 if (property.GetValue(teacher) != null)
                 {   
                     property.SetValue(oldTeacher, property.GetValue(teacher));
                 }
-            }
+            } */
 
-            _context.Teachers.Update(oldTeacher);
             _context.SaveChanges();
             Teacher newTeacher = _context.Teachers.Include(c => c.Courses).FirstOrDefault(u => u.Id == oldTeacher.Id);
             return newTeacher;

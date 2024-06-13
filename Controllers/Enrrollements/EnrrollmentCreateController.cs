@@ -1,7 +1,7 @@
 using prueba.Models;
 using prueba.Services.Enrollments;
 using Microsoft.AspNetCore.Mvc;
-using prueba.Controllers.Emails;
+using prueba.Services.Emails;
 
 namespace prueba.Controllers.Enrrollements
 {

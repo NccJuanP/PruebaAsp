@@ -1,7 +1,7 @@
 using AutoMapper;
 using prueba.Models;
 using prueba.Dtos;
-namespace prueba.Extras
+namespace prueba.Utils
 {
     public class UserProfile : Profile
     {

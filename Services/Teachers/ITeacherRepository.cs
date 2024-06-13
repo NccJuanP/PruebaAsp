@@ -1,4 +1,5 @@
 using prueba.Models;
+using prueba.Dtos;
 
 namespace prueba.Services.Teachers
 {
@@ -14,7 +15,7 @@ namespace prueba.Services.Teachers
         Teacher CreateTeacher(Teacher teacher);
 
         //Funcion para actualizar un profesor
-        Teacher UpdateTeacher(Teacher teacher, int id);
+        Teacher UpdateTeacher(TeacherDto teacher, int id);
 
         //Funcion para listar todos los cursos que pertenecen a un profesor
         List<Course> GetCoursesByTeacherId(int id);

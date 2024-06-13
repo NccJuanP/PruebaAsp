@@ -1,6 +1,5 @@
 using prueba.Services.Students;
 using Microsoft.AspNetCore.Mvc;
-using prueba.Controllers.Emails;
 
 namespace prueba.Controllers.Students
 {

@@ -4,6 +4,7 @@ using prueba.Services.Enrollments;
 using prueba.Services.Students;
 using prueba.Services.Teachers;
 using prueba.Data;
+using prueba.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +16,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 
 //Configuracion De Automapper
-builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddAutoMapper(typeof(UserProfile), typeof(TeacherProfile));
 
 //Configuracion para la conexion con la base de datos
 builder.Services.AddDbContext<pruebaContext>(options =>
