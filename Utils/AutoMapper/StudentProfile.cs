@@ -1,11 +1,11 @@
 using AutoMapper;
 using prueba.Models;
 using prueba.Dtos;
-namespace prueba.Extras
+namespace prueba.Utils.AutoMapper
 {
-    public class UserProfile : Profile
+    public class StudentProfile : Profile
     {
-        public UserProfile()
+        public StudentProfile()
         {
             CreateMap<StudentDto, Student>().ForAllMembers(options => options.Condition((src, dest, srcMember) => srcMember != null));
         }
